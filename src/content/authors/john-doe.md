@@ -1,8 +1,8 @@
 ---
-title: John Doe
-email: johndoe@email.com
+title: Brian Bolton
+email: briankbolton@gmail.com
 image: "@assets/profile/john-doe.jpg"
-description: This is the description. Just an example of a description, which is bad. A most not good description indeed, but characters on the page.
+description: Brian's first introduction to co-op living was a Haymarket.
 social:
   facebook: "https://www.facebook.com/"
   instagram: "https://www.instagram.com/"
