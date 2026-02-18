@@ -3,52 +3,197 @@ import BaseLayout from "@components/base/BaseLayout.astro";
 import { markdownify } from "@lib/textConverter";
 import Button from "@components/common/Button.astro";
 import type { HomeEntry } from "@/types";
-import { Image } from "astro:assets";
 
 interface Props {
   entry: HomeEntry;
 }
 
 const { entry } = Astro.props;
-const { image, imageAlt, title, content, button } = entry.data;
+const { title, content, button } = entry.data;
+
+// ─── Editable Site Data ───
+// Change any of the data below to update the homepage content.
+
+const about = {
+  paragraphs: [
+    "The Doves' Nest is a housing cooperative in Chicago's Uptown neighborhood. We are a group of people who have come together to re-start a tradition of cooperative living that dates back to the 1990s.",
+    "Our home is an 1890 house with 5 bedrooms, 2 kitchens, and a large yard. We share meals, chores, and decisions — and we're looking for new members to join us.",
+  ],
+  projectValues: [
+    { icon: "🏠", title: "Shared Living", desc: "Cooperative ownership of common spaces and responsibilities" },
+    { icon: "🍲", title: "Cook Cycles", desc: "Members take turns cooking for the house on a rotating schedule" },
+    { icon: "🗳️", title: "Democratic", desc: "Decisions made collectively at weekly house meetings" },
+    { icon: "🔧", title: "DIY Spirit", desc: "Saturday workdays to maintain and improve our home together" },
+  ],
+};
+
+const structure = {
+  intro: "We are a leasing co-op organized in partnership with NASCO, the North American Students of Cooperation.",
+  description: "Unlike an ownership co-op, members don't gain or have equity. Instead, we pay carrying charges (not rent) and sign membership contracts. This keeps costs low and decision-making democratic. NASCO owns the property; we operate it.",
+};
+
+const history = [
+  { year: "1990s", desc: "Known as a Leland House as part of the Stone Soup Collective" },
+  { year: "2022", desc: "NASCO buys Stone Soup Collective, including Leland and Hoyne House" },
+  { year: "2024", desc: "NASCO puts out a request for proposal" },
+  { year: "2025", desc: "Doves submit a proposal and begin the project" },
+];
+
+const members = {
+  intro: "We're a small but growing group of co-op enthusiasts, committed to building something special together.",
+  people: [
+    { name: "Devyn", role: "founding member", initial: "D" },
+    { name: "Rezac", role: "founding member", initial: "R" },
+    { name: "Kevin", role: "founding member", initial: "K" },
+    { name: "Brian", role: "founding member", initial: "B" },
+    { name: "Damon", role: "founding member", initial: "D" },
+  ],
+};
+
+const avatarColors = ['#6B5B33', '#7A9B6A', '#8B7B53', '#5C7A4E', '#C4A854'];
 ---
 
 <BaseLayout>
-  <!-- Banner -->
-  <section class="section">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="section relative overflow-hidden">
+    <div class="polka-bg"></div>
     <div class="container">
       <div class="row justify-center">
-        <div class="text-center lg:col-6">
-          {
-            image && (
-              <div class="blur-[0px]">
-                <Image
-                class="mb-6 w-64"
-                src={image}
-                alt={imageAlt}
-                width={1024}
-                height={1024}
-                loading="eager"
-              />
-              </div>
-              
-            )
-          }
-          <h1 set:html={markdownify(title)} class="mb-4" />
-          <p set:html={markdownify(content)} class="mb-8" />
-          {
-            button && (
-              <Button
-                label={button.label}
-                link={button.link}
-                newtab
-                hoverInvert
-                color=""
-              />
-            )
-          }
+        <div class="text-center lg:col-8 intersect:animate-fadeUp opacity-0">
+          <span class="inline-flex items-center gap-2 font-handwritten text-lg text-sage-dark bg-sage-muted px-4 py-1 rounded-full mb-6">
+            ✦ a housing cooperative ✦
+          </span>
+          <h1 class="font-primary !text-olive-dark mb-4" style="font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1.08; letter-spacing: -1.5px;">
+            The Doves'<br/><span class="italic text-sage">Nest</span>
+          </h1>
+          <p set:html={markdownify(content)} class="mb-8 text-olive-light max-w-lg mx-auto text-lg leading-relaxed" />
+          <div class="inline-flex gap-4 flex-wrap justify-center">
+            {button && (
+              <a href={button.link} class="btn-dove btn-primary">{button.label}</a>
+            )}
+            <a href="#about" class="btn-dove btn-outline">Our Story</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ═══════════ ABOUT ═══════════ -->
+  <section class="section-sm relative" id="about">
+    <div class="polka-bg-sage"></div>
+    <div class="container">
+      <div class="row g-5">
+        <div class="lg:col-6 intersect:animate-fadeRight opacity-0">
+          <p class="section-label">~ who we are ~</p>
+          <h2 class="h3 mb-4">A home grown together</h2>
+          {about.paragraphs.map((p) => <p class="mb-4 text-txt-light dark:text-darkmode-txt-light leading-relaxed">{p}</p>)}
+        </div>
+        <div class="lg:col-6 intersect:animate-fadeLeft opacity-0">
+          <div class="window-card">
+            <div class="window-card-bar">
+              <span class="window-dot dot-red"></span>
+              <span class="window-dot dot-yellow"></span>
+              <span class="window-dot dot-green"></span>
+              <span class="window-title">the project</span>
+            </div>
+            <div class="window-card-body">
+              {about.projectValues.map((v) => (
+                <div class="flex items-start gap-3 mb-4 last:mb-0">
+                  <span class="flex-shrink-0 w-9 h-9 bg-sage rounded-full flex items-center justify-center text-white text-sm">{v.icon}</span>
+                  <div>
+                    <strong class="text-olive-dark">{v.title}</strong><br/>
+                    <span class="text-olive-light text-sm">{v.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ STRUCTURE ═══════════ -->
+  <section class="section-sm relative" id="structure">
+    <div class="polka-bg"></div>
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-8 intersect:animate-fadeUp opacity-0">
+          <p class="section-label">~ how it works ~</p>
+          <h2 class="h3 mb-4">Structure & Ownership</h2>
+          <p class="mb-6 text-txt-light dark:text-darkmode-txt-light">{structure.intro}</p>
+          <div class="glass rounded-lg p-6">
+            <span class="badge-label mb-3">✦ leasing co-op</span>
+            <h3 class="h5 !text-txt-p dark:!text-darkmode-txt-p mb-2">Leasing Co-op</h3>
+            <p class="text-txt-light dark:text-darkmode-txt-light text-sm leading-relaxed">{structure.description}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ HISTORY ═══════════ -->
+  <section class="section-sm relative" id="history">
+    <div class="polka-bg-sage"></div>
+    <div class="container">
+      <div class="text-center mb-8 intersect:animate-fadeUp opacity-0">
+        <p class="section-label">~ our roots ~</p>
+        <h2 class="h3">House History</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {history.map((event, i) => (
+          <div class="timeline-card intersect:animate-fadeUp opacity-0" style={`animation-delay: ${i * 100}ms`}>
+            <div class="timeline-year">{event.year}</div>
+            <p class="text-olive-light text-sm leading-relaxed">{event.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ MEMBERS ═══════════ -->
+  <section class="section-sm relative" id="members">
+    <div class="polka-bg"></div>
+    <div class="container">
+      <div class="text-center mb-8 intersect:animate-fadeUp opacity-0">
+        <p class="section-label">~ the flock ~</p>
+        <h2 class="h3 mb-2">Meet the Doves</h2>
+        <p class="text-olive-light max-w-lg mx-auto">{members.intro}</p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        {members.people.map((member, i) => (
+          <div class="window-card intersect:animate-fadeUp opacity-0" style={`animation-delay: ${i * 80}ms`}>
+            <div class="window-card-bar">
+              <span class="window-dot dot-red"></span>
+              <span class="window-dot dot-yellow"></span>
+              <span class="window-dot dot-green"></span>
+            </div>
+            <div class="window-card-body text-center">
+              <div class="member-avatar" style={`background: ${avatarColors[i % avatarColors.length]}`}>{member.initial}</div>
+              <div class="font-primary font-semibold text-olive-dark text-lg">{member.name}</div>
+              <div class="font-handwritten text-sage text-base">{member.role}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CTA ═══════════ -->
+  <section class="section relative overflow-hidden bg-olive-dark rounded-lg mx-4 lg:mx-8 mb-4" id="contact">
+    <div class="container intersect:animate-fadeUp opacity-0" style="text-align: center;">
+      <p class="section-label !text-sage-light">~ come say hello ~</p>
+      <h2 class="h3 !text-cream max-w-xl mx-auto mb-2">Interested in co-op living?</h2>
+      <p class="text-olive-muted max-w-lg mx-auto mb-6 leading-relaxed">
+        Whether you're curious about cooperative housing, want to learn more about NASCO, or are interested in joining our community, we'd love to hear from you.
+      </p>
+      <a href="mailto:dovelandcooperative@gmail.com" class="btn-dove btn-sage">Get in Touch</a>
+      <br/>
+      <a href="mailto:dovelandcooperative@gmail.com" class="inline-block font-handwritten text-xl text-sage-light mt-4">
+        dovelandcooperative@gmail.com
+      </a>
+    </div>
+  </section>
+
 </BaseLayout>
