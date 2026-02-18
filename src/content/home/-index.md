@@ -1,9 +1,7 @@
 ---
-image: "@assets/astrogon-star.svg"
-imageAlt: Astrogon logo
-title: Astrogon
-content: A rapidly-customizable template for a blog, documentation, and more.
+title: The Doves' Nest
+content: A cooperative house in Chicago's Uptown neighborhood, building community through shared meals, shared labor, and shared decisions.
 button:
-  label: See the Code
-  link: https://github.com/astrogon/astrogon
+  label: Become a Member
+  link: /join
 ---
