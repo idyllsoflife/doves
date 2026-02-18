@@ -1,0 +1,96 @@
+---
+import BaseLayout from "@components/base/BaseLayout.astro";
+---
+
+<BaseLayout title="Member Portal — The Doves' Nest" description="Member resources and training for The Doves' Nest.">
+
+  <!-- ═══════════ WELCOME ═══════════ -->
+  <section class="section relative overflow-hidden">
+    <div class="polka-bg-sage"></div>
+    <div class="container">
+      <div class="row justify-center">
+        <div class="text-center lg:col-8 intersect:animate-fadeUp opacity-0">
+          <span class="inline-flex items-center font-handwritten text-lg text-sage-dark bg-sage-muted px-4 py-1 rounded-full mb-6">
+            ✦ member portal ✦
+          </span>
+          <h1 class="h2 mb-4">
+            Welcome to the <span class="italic text-sage">Nest</span>
+          </h1>
+          <p class="text-olive-light max-w-lg mx-auto leading-relaxed">
+            Welcome, new member! This is your hub for everything you need to get started, stay informed, and participate in co-op life at The Doves' Nest.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ VIDEO ═══════════ -->
+  <section class="section-sm relative">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-8">
+          <div class="text-center mb-4 intersect:animate-fadeUp opacity-0">
+            <p class="section-label">~ watch first ~</p>
+            <h2 class="h3">Welcome Video</h2>
+          </div>
+          <div class="glass rounded-lg aspect-video flex flex-col items-center justify-center gap-4 intersect:animate-fadeUp opacity-0">
+            <div class="w-16 h-16 rounded-full bg-olive flex items-center justify-center text-cream shadow-lg">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><polygon points="6,3 20,12 6,21"/></svg>
+            </div>
+            <span class="font-handwritten text-olive-muted text-lg">Welcome video coming soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ TRAINING ═══════════ -->
+  <section class="section-sm relative">
+    <div class="polka-bg"></div>
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-8">
+          <div class="text-center mb-6 intersect:animate-fadeUp opacity-0">
+            <p class="section-label">~ get started ~</p>
+            <h2 class="h3">Training</h2>
+          </div>
+          <div class="flex flex-col gap-4">
+            <!-- Training Card 1 -->
+            <div class="training-card intersect:animate-fadeUp opacity-0">
+              <div class="training-card-accent accent-sage"></div>
+              <div class="flex-shrink-0 w-16 flex items-center justify-center text-3xl">📋</div>
+              <div class="py-5 pr-5 flex-1">
+                <h3 class="h5 mb-1">Training Module 1</h3>
+                <p class="text-olive-light text-sm leading-relaxed">Placeholder — content coming soon.</p>
+              </div>
+              <div class="flex-shrink-0 w-12 flex items-center justify-center text-cream-dark text-lg">→</div>
+            </div>
+
+            <!-- Training Card 2 -->
+            <div class="training-card intersect:animate-fadeUp opacity-0" style="animation-delay: 80ms">
+              <div class="training-card-accent accent-olive"></div>
+              <div class="flex-shrink-0 w-16 flex items-center justify-center text-3xl">🔧</div>
+              <div class="py-5 pr-5 flex-1">
+                <h3 class="h5 mb-1">Training Module 2</h3>
+                <p class="text-olive-light text-sm leading-relaxed">Placeholder — content coming soon.</p>
+              </div>
+              <div class="flex-shrink-0 w-12 flex items-center justify-center text-cream-dark text-lg">→</div>
+            </div>
+
+            <!-- Training Card 3 -->
+            <div class="training-card intersect:animate-fadeUp opacity-0" style="animation-delay: 160ms">
+              <div class="training-card-accent accent-gold"></div>
+              <div class="flex-shrink-0 w-16 flex items-center justify-center text-3xl">🍳</div>
+              <div class="py-5 pr-5 flex-1">
+                <h3 class="h5 mb-1">Training Module 3</h3>
+                <p class="text-olive-light text-sm leading-relaxed">Placeholder — content coming soon.</p>
+              </div>
+              <div class="flex-shrink-0 w-12 flex items-center justify-center text-cream-dark text-lg">→</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
