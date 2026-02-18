@@ -10,9 +10,9 @@ let h3 = h4 * font_scale;
 let h2 = h3 * font_scale;
 let h1 = h2 * font_scale;
 
-let fontPrimary = "serif";
+let fontPrimary = "Fraunces";
 let fontPrimaryType = "serif";
-let fontSecondary = "open sans";
+let fontSecondary = "DM Sans";
 let fontSecondaryType = "sans-serif";
 
 fontPrimary = fontPrimary
@@ -42,29 +42,53 @@ module.exports = {
     },
     extend: {
       colors: {
+        // Doveland palette
+        cream: {
+          DEFAULT: "#EDE8D0",
+          light: "#FAF9F4",
+          dark: "#D4CDB4",
+        },
+        olive: {
+          DEFAULT: "#6B5B33",
+          dark: "#4A3F24",
+          light: "#8B7B53",
+          muted: "#A09070",
+        },
+        sage: {
+          DEFAULT: "#7A9B6A",
+          dark: "#5C7A4E",
+          light: "#9DBF8E",
+          muted: "rgba(122,155,106,0.12)",
+        },
+        pink: {
+          dot: "#E8728A",
+          light: "#F0A0B0",
+        },
+        gold: "#C4A854",
+        // Astrogon-compatible tokens mapped to Doveland
         txt: {
-          p: "#000",
-          s: "#222",
-          light: "#444",
+          p: "#4A3F24",
+          s: "#6B5B33",
+          light: "#8B7B53",
         },
         bg: {
-          p: "#fff",
-          s: "#ddd",
-          t: "#ddd",
+          p: "#EDE8D0",
+          s: "#FAF9F4",
+          t: "#FAF9F4",
         },
-        border: "#ddd",
+        border: "#D4CDB4",
         darkmode: {
           txt: {
-            p: "#fff",
-            s: "#ddd",
-            light: "#bbb",
+            p: "#EDE8D0",
+            s: "#D4CDB4",
+            light: "#A09070",
           },
           bg: {
-            p: "#222",
-            s: "#444",
-            t: "#444",
+            p: "#3A3320",
+            s: "#4A3F24",
+            t: "#4A3F24",
           },
-          border: "#444",
+          border: "#6B5B33",
         },
       },
       minHeight: {
@@ -88,6 +112,7 @@ module.exports = {
       fontFamily: {
         primary: [fontPrimary, fontPrimaryType],
         secondary: [fontSecondary, fontSecondaryType],
+        handwritten: ["Caveat", "cursive"],
       },
       spacing: {
         "1/2": "50%",
@@ -115,20 +140,17 @@ module.exports = {
         "9/16": "56.25%",
       },
       animation: {
-        // Intersect
         fade: "fadeIn 1000ms both",
         fadeUp: "fadeInUp 1000ms both",
         fadeDown: "fadeInDown 1000ms both",
         fadeRight: "fadeInRight 1000ms both",
         fadeLeft: "fadeInLeft 1000ms both",
         scale: "scaleOut 1000ms both",
-        // Star Background
         twinkle: "twinkle 5s infinite ease-in-out",
-        // Cycle Background
         cycleBg: "cycleBg 60s ease infinite",
+        float: "float 6s ease-in-out infinite",
       },
       keyframes: {
-        // Intersect
         fadeIn: {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
@@ -153,15 +175,17 @@ module.exports = {
           "0%": { opacity: 0, transform: "scale(0.5)" },
           "100%": { opacity: 1, transform: "scale(1)" },
         },
-        // Star Background
         twinkle: {
           "0%, 20%, 100%": { opacity: 1 },
           "10%": { opacity: 0.25 },
         },
-        // Cycle Background
         cycleBg: {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+          "50%": { transform: "translateY(-10px) rotate(3deg)" },
         },
       },
     },
