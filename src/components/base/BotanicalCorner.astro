@@ -1,0 +1,23 @@
+---
+/*
+  BotanicalCorner.astro — Decorative botanical vine corner SVG
+  Props: position ('tl' | 'tr' | 'bl' | 'br'), color (sage or olive)
+*/
+interface Props {
+  position?: 'tl' | 'tr' | 'bl' | 'br';
+  color?: string;
+}
+
+const { position = 'tl', color = '#7A9B6A' } = Astro.props;
+
+const posClass = `bc-${position}`;
+---
+
+<svg class={`botanical-corner ${posClass}`} width="120" height="120" viewBox="0 0 120 120">
+  <path d="M5 115 C5 60,20 30,50 15" stroke={color} stroke-width="2" fill="none"/>
+  <path d="M5 115 C15 80,35 55,65 40" stroke={color} stroke-width="1.5" fill="none"/>
+  <circle cx="50" cy="15" r="4" fill={color}/>
+  <circle cx="65" cy="40" r="3" fill={color}/>
+  <ellipse cx="25" cy="75" rx="8" ry="5" fill={color} opacity="0.15" transform="rotate(-30,25,75)"/>
+  <ellipse cx="40" cy="50" rx="7" ry="4" fill={color} opacity="0.15" transform="rotate(-45,40,50)"/>
+</svg>

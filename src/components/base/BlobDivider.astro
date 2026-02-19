@@ -1,0 +1,42 @@
+---
+/*
+  BlobDivider.astro — Organic blob shape between sections
+  Props: from (top color), to (bottom color)
+  Default: cream → warm-white
+*/
+interface Props {
+  from?: string;
+  to?: string;
+  variant?: number;
+}
+
+const { from = "#EDE8D0", to = "#FAF9F4", variant = 1 } = Astro.props;
+
+const paths: Record<number, string[]> = {
+  1: [
+    `M0,0 L0,45 C120,80 240,95 360,85 C480,75 540,40 720,50 C900,60 1020,90 1140,80 C1260,70 1380,40 1440,55 L1440,0 Z`,
+    `M0,100 L0,60 C180,30 360,50 540,55 C720,60 900,40 1080,50 C1200,55 1350,70 1440,45 L1440,100 Z`
+  ],
+  2: [
+    `M0,0 L0,50 C200,80 400,30 600,55 C800,80 1000,35 1200,60 C1340,75 1400,50 1440,40 L1440,0 Z`,
+    `M0,100 L0,55 C160,30 320,65 500,50 C680,35 850,70 1050,55 C1200,42 1360,60 1440,50 L1440,100 Z`
+  ],
+  3: [
+    `M0,0 L0,55 C180,85 360,25 540,50 C720,75 900,30 1080,55 C1200,70 1350,45 1440,35 L1440,0 Z`,
+    `M0,100 L0,50 C240,70 420,35 660,50 C900,65 1080,30 1260,55 C1370,65 1430,55 1440,50 L1440,100 Z`
+  ],
+  4: [
+    `M0,0 L0,45 C240,80 480,20 720,50 C960,80 1200,30 1440,55 L1440,0 Z`,
+    `M0,100 L0,60 C300,35 540,75 780,55 C1020,35 1200,65 1440,45 L1440,100 Z`
+  ],
+};
+
+const [topPath, bottomPath] = paths[variant] || paths[1];
+---
+
+<div class="blob-divider">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+    <path d={topPath} fill={from} />
+    <path d={bottomPath} fill={to} />
+  </svg>
+</div>
