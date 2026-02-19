@@ -1,8 +1,8 @@
-import React from "react"; 
-import { LiteYouTubeEmbed } from "react-lite-youtube-embed";
+import React from "react";
+import * as ReactLiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
-interface YoutubeProps {
+type YoutubeProps = {
   id: string;
   title?: string;
   poster?: "maxresdefault" | "hqdefault" | "mqdefault" | "sddefault";
@@ -11,7 +11,7 @@ interface YoutubeProps {
   noCookie?: boolean;
   wrapperClass?: string;
   iframeClass?: string;
-}
+};
 
 const Youtube: React.FC<YoutubeProps> = ({
   id,
@@ -23,6 +23,18 @@ const Youtube: React.FC<YoutubeProps> = ({
   wrapperClass = "",
   iframeClass = "",
 }) => {
+  // Compatible with both:
+  // - default export (some builds)
+  // - named export LiteYouTubeEmbed (other builds)
+  const LiteYouTubeEmbed =
+    (ReactLiteYouTubeEmbed as any).default ??
+    (ReactLiteYouTubeEmbed as any).LiteYouTubeEmbed;
+
+  if (!LiteYouTubeEmbed) {
+    // If the package shape changes again, fail gracefully instead of breaking the whole build
+    return null;
+  }
+
   return (
     <LiteYouTubeEmbed
       id={id}
