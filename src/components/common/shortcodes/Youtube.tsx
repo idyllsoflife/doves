@@ -1,51 +1,49 @@
 import React from "react";
-import * as ReactLiteYouTubeEmbed from "react-lite-youtube-embed";
-import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
 type YoutubeProps = {
   id: string;
   title?: string;
-  poster?: "maxresdefault" | "hqdefault" | "mqdefault" | "sddefault";
-  aspectHeight?: number;
-  aspectWidth?: number;
   noCookie?: boolean;
-  wrapperClass?: string;
-  iframeClass?: string;
+  aspectWidth?: number;
+  aspectHeight?: number;
+  className?: string;
 };
 
 const Youtube: React.FC<YoutubeProps> = ({
   id,
   title = "YouTube video",
-  poster = "maxresdefault",
-  aspectHeight = 9,
-  aspectWidth = 16,
   noCookie = true,
-  wrapperClass = "",
-  iframeClass = "",
+  aspectWidth = 16,
+  aspectHeight = 9,
+  className = "",
 }) => {
-  // Compatible with both:
-  // - default export (some builds)
-  // - named export LiteYouTubeEmbed (other builds)
-  const LiteYouTubeEmbed =
-    (ReactLiteYouTubeEmbed as any).default ??
-    (ReactLiteYouTubeEmbed as any).LiteYouTubeEmbed;
-
-  if (!LiteYouTubeEmbed) {
-    // If the package shape changes again, fail gracefully instead of breaking the whole build
-    return null;
-  }
+  const domain = noCookie ? "www.youtube-nocookie.com" : "www.youtube.com";
+  const src = `https://${domain}/embed/${id}`;
 
   return (
-    <LiteYouTubeEmbed
-      id={id}
-      title={title}
-      poster={poster}
-      aspectHeight={aspectHeight}
-      aspectWidth={aspectWidth}
-      noCookie={noCookie}
-      wrapperClass={wrapperClass}
-      iframeClass={iframeClass}
-    />
+    <div
+      className={className}
+      style={{
+        position: "relative",
+        width: "100%",
+        paddingTop: `${(aspectHeight / aspectWidth) * 100}%`,
+      }}
+    >
+      <iframe
+        src={src}
+        title={title}
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          border: 0,
+        }}
+      />
+    </div>
   );
 };
 
