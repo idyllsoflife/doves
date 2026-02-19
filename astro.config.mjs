@@ -16,7 +16,7 @@ const isGitHubPages = process.env.GITHUB_PAGES === "true";
 export default defineConfig({
   // Used by sitemap + canonical URLs.
   // You can override in Actions with SITE_URL.
-  site: process.env.SITE_URL || "https://idyllsoflife.github.io",
+  site: process.env.SITE_URL || "https://dovesnestchicago.com",
 
   // /doves on GitHub Pages, / on custom domain root
   base: isGitHubPages ? "/doves" : "/",
