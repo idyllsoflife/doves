@@ -1,22 +1,38 @@
-import React from "react";
-import LiteYouTubeEmbed from "react-lite-youtube-embed";
+import React from "react"; 
+import { LiteYouTubeEmbed } from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
-const Youtube = ({
-  id,
-  title,
-  ...rest
-}: {
+interface YoutubeProps {
   id: string;
-  title: string;
-  [key: string]: any;
+  title?: string;
+  poster?: "maxresdefault" | "hqdefault" | "mqdefault" | "sddefault";
+  aspectHeight?: number;
+  aspectWidth?: number;
+  noCookie?: boolean;
+  wrapperClass?: string;
+  iframeClass?: string;
+}
+
+const Youtube: React.FC<YoutubeProps> = ({
+  id,
+  title = "YouTube video",
+  poster = "maxresdefault",
+  aspectHeight = 9,
+  aspectWidth = 16,
+  noCookie = true,
+  wrapperClass = "",
+  iframeClass = "",
 }) => {
   return (
     <LiteYouTubeEmbed
-      wrapperClass="yt-lite rounded-lg"
       id={id}
       title={title}
-      {...rest}
+      poster={poster}
+      aspectHeight={aspectHeight}
+      aspectWidth={aspectWidth}
+      noCookie={noCookie}
+      wrapperClass={wrapperClass}
+      iframeClass={iframeClass}
     />
   );
 };
