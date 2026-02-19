@@ -1,0 +1,224 @@
+/* ============================================================
+   THE DOVES' NEST — Custom Design Styles
+   Drop this into: src/assets/styles/doveland.css
+   Import it in your base layout
+   ============================================================ */
+
+/* ============ CSS VARIABLES ============ */
+:root {
+  --cream: #EDE8D0;
+  --cream-light: #F5F2E8;
+  --cream-dark: #DDD8C0;
+  --olive: #6B5B33;
+  --olive-dark: #4A3F24;
+  --olive-light: #8B7B53;
+  --olive-muted: #9E8E66;
+  --sage: #7A9B6A;
+  --sage-light: #A8C49A;
+  --sage-dark: #5C7A4E;
+  --sage-muted: rgba(122, 155, 106, 0.12);
+  --warm-white: #FAF9F4;
+  --accent-gold: #C4A854;
+  --text-body: #4A4235;
+  --shadow: rgba(107, 91, 51, 0.1);
+  --shadow-lg: rgba(107, 91, 51, 0.18);
+}
+
+/* ============ PAPER TEXTURE ============ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.025;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* ============ POLKA DOTS ============ */
+.polka-bg {
+  background-image: radial-gradient(circle, var(--olive) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.04;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.polka-bg-sage {
+  background-image: radial-gradient(circle, var(--sage) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  opacity: 0.06;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ============ PINK DOTS ============ */
+.pink-dots {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pink-dots::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, #E8728A 2.2px, transparent 2.2px),
+    radial-gradient(circle, #D4627A 1.6px, transparent 1.6px),
+    radial-gradient(circle, #F0A0B0 1.8px, transparent 1.8px);
+  background-size: 197px 223px, 157px 181px, 251px 269px;
+  background-position: 13px 47px, 89px 131px, 43px 17px;
+  opacity: 0.09;
+}
+
+.pink-dots::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, #E8728A 1.4px, transparent 1.4px),
+    radial-gradient(circle, #F0A0B0 2px, transparent 2px);
+  background-size: 311px 337px, 173px 211px;
+  background-position: 67px 103px, 29px 71px;
+  opacity: 0.07;
+}
+
+/* ============ WINDOW-FRAME CARDS ============ */
+.window-card {
+  background: var(--cream);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px var(--shadow-lg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.window-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 50px var(--shadow-lg);
+}
+
+.window-card-bar {
+  background: var(--olive);
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.window-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot-red { background: #E8726A; }
+.dot-yellow { background: #E8C86A; }
+.dot-green { background: var(--sage-light); }
+
+.window-card-bar .window-title {
+  font-family: 'Caveat', cursive;
+  font-size: 0.95rem;
+  color: var(--cream);
+  margin-left: 0.5rem;
+}
+
+.window-card-body {
+  padding: 2rem;
+}
+
+/* ============ BLOB DIVIDERS ============ */
+.blob-divider {
+  width: 100%;
+  display: block;
+  margin: -1px 0;
+  position: relative;
+  z-index: 5;
+}
+
+.blob-divider svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ============ DOODLE ANIMATIONS ============ */
+.doodle {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.12;
+}
+
+@keyframes floatA {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(4deg); }
+}
+
+@keyframes floatB {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(-3deg); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.12; transform: scale(1) rotate(0deg); }
+  50% { opacity: 0.28; transform: scale(1.15) rotate(15deg); }
+}
+
+/* ============ BOTANICAL CORNERS ============ */
+.botanical-corner {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.08;
+}
+
+.bc-tl { top: 20px; left: 20px; }
+.bc-tr { top: 20px; right: 20px; transform: scaleX(-1); }
+.bc-bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
+.bc-br { bottom: 20px; right: 20px; transform: scale(-1, -1); }
+
+/* ============ SCROLL REVEAL ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ INFO ROWS (for data cards) ============ */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed var(--cream-dark);
+}
+
+.info-row:last-child { border-bottom: none; }
+
+/* ============ SECTION LABELS ============ */
+.section-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--sage);
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--olive-dark);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
