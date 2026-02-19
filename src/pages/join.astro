@@ -3,32 +3,31 @@ import BaseLayout from "@components/base/BaseLayout.astro";
 
 // ─── Editable Data ───
 const facilities = [
-  { label: "Bedrooms", value: "5", note: "(sizes vary)" },
-  { label: "Kitchens", value: "2" },
-  { label: "Bathrooms", value: "2", note: "(being renovated)" },
-  { label: "Yard", value: "Large backyard" },
-  { label: "Laundry", value: "In-unit" },
-];
+  { label: "Bedrooms", value: "10", note: "(sizes vary)" },
+  { label: "Kitchens", value: "1" },
+  { label: "Bathrooms", value: "5", note: "(under construction)" },
+  ];
 
 const costs = [
-  { label: "Carrying Charges", value: "$680 – $840/mo" },
+  { label: "Carrying Charges", value: "$725 – $840/mo" },
   { label: "Food Group", value: "$275/mo" },
-  { label: "Initial Share", value: "~$500 one-time" },
+  { label: "Initial Share", value: "8500 one-time" },
 ];
 
 const expectations = [
-  { label: "House Meetings", value: "Weekly" },
+  { label: "House Meetings", value: "Tuesdays" },
   { label: "Workdays", value: "Saturdays" },
   { label: "Cook Cycle", value: "Rotating" },
   { label: "Chores", value: "Shared" },
 ];
 
 const applicationSteps = [
+  { title: "Drop Us a Line", desc: "Email us at dovesnestchicago.com to setup an informal chat in person or via phone." }  
   { title: "Fill Out an Application", desc: "Complete our online application form to tell us about yourself." },
   { title: "Attend a House Dinner", desc: "Join us for a meal to meet the current members and see the space." },
   { title: "Interview", desc: "A casual conversation with the membership committee." },
   { title: "Member Vote", desc: "Current members vote on new membership at a house meeting." },
-  { title: "Move In!", desc: "Sign membership contract, pay initial share, and join the flock." },
+  { title: "Move In!", desc: "Sign membership contract and occupany agreement, pay initial share, and join the flock." },
 ];
 ---
 
@@ -158,7 +157,7 @@ const applicationSteps = [
               <span class="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center text-xl" style="background: rgba(107,91,51,0.1);">🍲</span>
               <div>
                 <h4 class="h6 mb-1">Food Group</h4>
-                <p class="text-txt-light dark:text-darkmode-txt-light text-sm leading-relaxed">In addition to carrying charges, members participate in food group for $275/month. This covers food and utilities, and is subject to change in accordance with house policy.</p>
+                <p class="text-txt-light dark:text-darkmode-txt-light text-sm leading-relaxed">In addition to carrying charges, members participate in food group for $275/month. This covers food and household goods, and some amount of utilities.</p>
               </div>
             </div>
             <div class="glass rounded-lg p-5 flex gap-4 items-start intersect:animate-fadeUp opacity-0" style="animation-delay: 160ms">
