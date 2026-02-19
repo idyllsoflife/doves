@@ -8,35 +8,37 @@ import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
-import cloudflare from "@astrojs/cloudflare";
 
-// https://astro.build/config
 export default defineConfig({
-  site: "https://janedoe.com",
-  base: "/",
+  site: "https://idyllsoflife.github.io",
+  base: "/doves",
+  output: "static",
+
   trailingSlash: "ignore",
-  prefetch: {
-    prefetchAll: true
-  },
-  adapter: cloudflare(),
-  integrations: [react(), sitemap(), tailwind({
-    config: {
-      applyBaseStyles: false
-    }
-  }), AutoImport({
-    imports: ["@components/common/Button.astro", "@shortcodes/Accordion", "@shortcodes/Notice", "@shortcodes/Youtube", "@shortcodes/Tabs", "@shortcodes/Tab"]
-  }), mdx()],
+  prefetch: { prefetchAll: true },
+
+  // ✅ remove: adapter: cloudflare(),
+
+  integrations: [
+    react(),
+    sitemap(),
+    tailwind({ config: { applyBaseStyles: false } }),
+    AutoImport({
+      imports: [
+        "@components/common/Button.astro",
+        "@shortcodes/Accordion",
+        "@shortcodes/Notice",
+        "@shortcodes/Youtube",
+        "@shortcodes/Tabs",
+        "@shortcodes/Tab",
+      ],
+    }),
+    mdx(),
+  ],
   markdown: {
-    remarkPlugins: [remarkToc, [remarkCollapse, {
-      test: "Table of contents"
-    }], remarkMath],
+    remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }], remarkMath],
     rehypePlugins: [[rehypeKatex, {}]],
-    shikiConfig: {
-      themes: { // https://shiki.style/themes
-        light: "light-plus",
-        dark: "dark-plus",
-      } 
-    },
-    extendDefaultPlugins: true
+    shikiConfig: { themes: { light: "light-plus", dark: "dark-plus" } },
+    extendDefaultPlugins: true,
   },
 });
