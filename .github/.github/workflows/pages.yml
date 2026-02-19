@@ -30,13 +30,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Optional but helpful: fail fast if base path isn't set for repo Pages
-      - name: Verify Astro base path (recommended)
-        run: |
-          if ! grep -q 'base:\s*"/doves"' astro.config.mjs 2>/dev/null; then
-            echo "NOTE: For project Pages, set base: \"/doves\" in astro.config.mjs"
-          fi
-
       - name: Build
         run: npm run build
 
