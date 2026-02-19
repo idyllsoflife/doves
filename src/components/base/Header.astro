@@ -6,31 +6,22 @@ const { pathname } = Astro.url;
 
 const stickyHeader = true;
 
+// Base URL is "/" locally, and "/doves/" on GitHub Pages when base is set in astro.config.mjs
+const base = import.meta.env.BASE_URL;
+
+// Join paths safely under the current base
+const withBase = (p: string) => new URL(p.replace(/^\//, ""), base).pathname;
+
+// Normalize for active-link matching (avoid trailing slash mismatches)
+const norm = (p: string) => (p.length > 1 && p.endsWith("/") ? p.slice(0, -1) : p);
+
 const menu = [
-  {
-    name: "Home",
-    url: "/",
-  },
-  {
-    name: "About",
-    url: "/about",
-  },
-  {
-    name: "Join",
-    url: "/join",
-  },
-  {
-    name: "Blog",
-    url: "/blog",
-  },
-  {
-    name: "Docs",
-    url: "/docs",
-  },
-  {
-    name: "Member Portal",
-    url: "/member-portal",
-  },
+  { name: "Home", url: base },
+  { name: "About", url: withBase("/about") },
+  { name: "Join", url: withBase("/join") },
+  { name: "Blog", url: withBase("/blog") },
+  { name: "Docs", url: withBase("/docs") },
+  { name: "Member Portal", url: withBase("/member-portal") },
 ];
 ---
 
@@ -53,13 +44,14 @@ const menu = [
         <title>Menu Close</title>
         <polygon
           points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
-          transform="rotate(45 10 10)"></polygon>
+          transform="rotate(45 10 10)"
+        ></polygon>
       </svg>
     </label>
     <!-- /navbar toggler -->
 
     <!-- Site name -->
-    <a href="/" class="order-0 font-primary font-bold text-lg text-txt-p dark:text-darkmode-txt-p md:hidden">
+    <a href={base} class="order-0 font-primary font-bold text-lg text-txt-p dark:text-darkmode-txt-p md:hidden">
       The Doves' Nest
     </a>
 
@@ -69,12 +61,11 @@ const menu = [
     >
       {
         menu.map((item) => (
-          <li class="">
+          <li>
             <a
               href={item.url}
               class={`block p-2 font-secondary font-semibold text-txt-p transition dark:text-darkmode-txt-p lg:px-2 lg:py-3 ${
-                (pathname === `${item.url}/` || pathname === item.url) &&
-                "active"
+                norm(pathname) === norm(item.url) && "active"
               }`}
             >
               {item.name}
@@ -83,10 +74,11 @@ const menu = [
         ))
       }
     </ul>
+
     <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
       <a
         class="mr-4 inline-block border-border text-xl text-txt-p dark:border-darkmode-border dark:text-darkmode-txt-p"
-        href="/search"
+        href={withBase("/search")}
         aria-label="search"
       >
         <IoSearch />
