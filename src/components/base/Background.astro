@@ -1,19 +1,40 @@
-<!-- Doveland Background: Cream base with scattered pink dots -->
+---
+import Doodles from "@components/base/Doodles.astro";
+import BotanicalCorner from "@components/base/BotanicalCorner.astro";
+---
+
+<!-- Base background -->
 <div class="pink-dots" aria-hidden="true"></div>
 
+<!-- Decorative elements -->
+<div class="bg-decor" aria-hidden="true">
+  <Doodles />
+  <BotanicalCorner position="tl" color="#7A9B6A" />
+  <BotanicalCorner position="tr" color="#7A9B6A" />
+  <BotanicalCorner position="bl" color="#7A9B6A" />
+  <BotanicalCorner position="br" color="#7A9B6A" />
+</div>
+
 <style>
+  /* Solid page base */
   html::before {
     content: "";
     position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: #EDE8D0;
-    z-index: -1;
+    z-index: -2;
     pointer-events: none;
   }
 
   html.dark::before {
     background: #3A3320;
+  }
+
+  /* Holds doodles + corners */
+  .bg-decor {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
   }
 </style>
