@@ -9,15 +9,23 @@ import remarkToc from "remark-toc";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 
+// When building for GitHub Pages project sites, we need /doves as the base.
+// When using a custom domain at the root, we want /.
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+
 export default defineConfig({
-  site: "https://idyllsoflife.github.io",
-  base: "/doves",
+  // Used by sitemap + canonical URLs.
+  // You can override in Actions with SITE_URL.
+  site: process.env.SITE_URL || "https://idyllsoflife.github.io",
+
+  // /doves on GitHub Pages, / on custom domain root
+  base: isGitHubPages ? "/doves" : "/",
+
+  // GitHub Pages requires static output
   output: "static",
 
   trailingSlash: "ignore",
   prefetch: { prefetchAll: true },
-
-  // ✅ remove: adapter: cloudflare(),
 
   integrations: [
     react(),
@@ -35,10 +43,17 @@ export default defineConfig({
     }),
     mdx(),
   ],
+
   markdown: {
-    remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }], remarkMath],
+    remarkPlugins: [
+      remarkToc,
+      [remarkCollapse, { test: "Table of contents" }],
+      remarkMath,
+    ],
     rehypePlugins: [[rehypeKatex, {}]],
-    shikiConfig: { themes: { light: "light-plus", dark: "dark-plus" } },
+    shikiConfig: {
+      themes: { light: "light-plus", dark: "dark-plus" },
+    },
     extendDefaultPlugins: true,
   },
 });
