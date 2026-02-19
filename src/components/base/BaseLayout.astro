@@ -2,17 +2,19 @@
 import { plainify } from "@lib/textConverter";
 import Footer from "@components/base/Footer.astro";
 import Header from "@components/base/Header.astro";
-import ObserverScript from "@components/base/ObserverScript.astro";
-import "@/styles/main.scss";
-import { ClientRouter } from "astro:transitions";
 import Background from "@/components/base/Background.astro";
+
+import "@/styles/main.scss";
+import "@/styles/doveland.css";
+
+import { ClientRouter } from "astro:transitions";
 import { Tooltips } from "astro-tooltips";
 
 // types for frontmatters
 export interface Props {
   title?: string;
   description?: string | null;
-  image?: string;
+  image?: string; // should be a PUBLIC path like "/images/og.png"
   noindex?: boolean;
   canonical?: string;
 }
@@ -21,60 +23,52 @@ const { title, description, image, noindex, canonical } = Astro.props;
 
 const siteTitle = "The Doves' Nest";
 const siteDescription = "A housing cooperative in Chicago's Uptown neighborhood";
-const siteImage = "@assets/og-image.png";
 const siteAuthor = "The Doves' Nest";
+
+// For meta tags, use your real domain:
 const baseUrl = "https://dovesnestchicago.com";
+
+// Use a public-path OG image so meta tags get a valid URL.
+// Make sure you have this file in /public/og-image.png (or change the path below).
+const defaultOgImagePath = "/og-image.png";
+
+// Base-aware helper for local vs GitHub Pages base paths (safe string join)
+const BASE = import.meta.env.BASE_URL || "/";
+const withBase = (path: string) => {
+  const base = BASE.endsWith("/") ? BASE.slice(0, -1) : BASE;
+  const p = path?.startsWith("/") ? path : `/${path || ""}`;
+  return (base ? `${base}${p}` : p) || "/";
+};
+
+// Canonical URL (prefer explicit canonical prop, else use Astro.url)
+const canonicalUrl = canonical || Astro.url.toString();
+
+// OG/Twitter image absolute URL
+const ogImageAbs = `${baseUrl}${image ? image : defaultOgImagePath}`;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- favicon -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon/favicon-16x16.png"
-    />
-    
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href={withBase("/favicon/apple-touch-icon.png")} />
+    <link rel="icon" type="image/png" sizes="32x32" href={withBase("/favicon/favicon-32x32.png")} />
+    <link rel="icon" type="image/png" sizes="16x16" href={withBase("/favicon/favicon-16x16.png")} />
+
+    <link rel="sitemap" href={withBase("/sitemap-index.xml")} />
 
     <meta name="theme-name" content="pages" />
     <meta name="msapplication-TileColor" content="#EDE8D0" />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: light)"
-      content="#EDE8D0"
-    />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: dark)"
-      content="#3A3320"
-    />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#EDE8D0" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#3A3320" />
+
     <meta name="generator" content={Astro.generator} />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=5"
-    />
+    <title>{plainify(title ? title : siteTitle)}</title>
 
-    <title>
-      {plainify(title ? title : siteTitle)}
-    </title>
-
-    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
+    <link rel="canonical" href={canonicalUrl} />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
 
     <meta
@@ -82,30 +76,24 @@ const baseUrl = "https://dovesnestchicago.com";
       content={plainify(description ? description : siteDescription)}
     />
     <meta name="author" content={siteAuthor} />
+
+    <!-- Open Graph -->
     <meta property="og:title" content={plainify(title ? title : siteTitle)} />
     <meta
       property="og:description"
       content={plainify(description ? description : siteDescription)}
     />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content={`${baseUrl}/${Astro.url.pathname.replace("/", "")}`}
-    />
-    <meta
-      property="og:image"
-      content={`${baseUrl}${image ? image : siteImage}`}
-    />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageAbs} />
 
+    <!-- Twitter -->
     <meta name="twitter:title" content={plainify(title ? title : siteTitle)} />
     <meta
       name="twitter:description"
       content={plainify(description ? description : siteDescription)}
     />
-    <meta
-      name="twitter:image"
-      content={`${baseUrl}${image ? image : siteImage}`}
-    />
+    <meta name="twitter:image" content={ogImageAbs} />
     <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Katex -->
@@ -126,16 +114,17 @@ const baseUrl = "https://dovesnestchicago.com";
       integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh"
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"></script>
-      
+
     <!-- https://docs.astro.build/en/guides/view-transitions -->
     <ClientRouter fallback="swap" />
     <Tooltips interactive={false} delay={[333, 0]} />
   </head>
+
   <body>
     <Background />
     <Header />
     <main id="main-content" class="flex-1">
-      <slot/>
+      <slot />
     </main>
     <Footer />
     <!-- <ObserverScript /> -->
