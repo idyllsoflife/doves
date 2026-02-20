@@ -17,30 +17,18 @@ const { title, content, button } = entry.data;
 const about = {
   paragraphs: [
     "The Doves' Nest is a housing cooperative in Chicago's Uptown neighborhood. We are a group of people who have come together to re-start a tradition of cooperative living that dates back to the 1990s.",
-    "Our home is an 1890 house with 5 bedrooms, 2 kitchens, and a large yard. We share meals, chores, and decisions — and we're looking for new members to join us.",
+    "Our home is an 1890s house. We share meals, a huge project, and decisions — and we're looking for new members to join us.",
   ],
   projectValues: [
     { icon: "🏠", title: "Shared Living", desc: "Cooperative ownership of common spaces and responsibilities" },
     { icon: "🍲", title: "Cook Cycles", desc: "Members take turns cooking for the house on a rotating schedule" },
     { icon: "🗳️", title: "Democratic", desc: "Decisions made collectively at weekly house meetings" },
-    { icon: "🔧", title: "DIY Spirit", desc: "Saturday workdays to maintain and improve our home together" },
+    { icon: "🔧", title: "DIY Spirit", desc: "Saturday workdays to maintain and renovate our home together" },
   ],
 };
 
-const structure = {
-  intro: "We are a leasing co-op organized in partnership with NASCO, the North American Students of Cooperation.",
-  description: "Unlike an ownership co-op, members don't gain or have equity. Instead, we pay carrying charges (not rent) and sign membership contracts. This keeps costs low and decision-making democratic. NASCO owns the property; we operate it.",
-};
-
-const history = [
-  { year: "1990s", desc: "Known as a Leland House as part of the Stone Soup Collective" },
-  { year: "2022", desc: "NASCO buys Stone Soup Collective, including Leland and Hoyne House" },
-  { year: "2024", desc: "NASCO puts out a request for proposal" },
-  { year: "2025", desc: "Doves submit a proposal and begin the project" },
-];
-
 const members = {
-  intro: "We're a small but growing group of co-op enthusiasts, committed to building something special together.",
+  intro: "We're a small group of co-op enthusiasts, committed to building something special together.",
   people: [
     { name: "Devyn", role: "founding member", initial: "D" },
     { name: "Rezac", role: "founding member", initial: "R" },
@@ -133,25 +121,6 @@ const avatarColors = ['#6B5B33', '#7A9B6A', '#8B7B53', '#5C7A4E', '#C4A854'];
     </div>
   </section>
 
-  <!-- ═══════════ HISTORY ═══════════ -->
-  <section class="section-sm relative" id="history">
-    <div class="polka-bg-sage"></div>
-    <div class="container">
-      <div class="text-center mb-8 intersect:animate-fadeUp opacity-0">
-        <p class="section-label">~ our roots ~</p>
-        <h2 class="h3">House History</h2>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {history.map((event, i) => (
-          <div class="timeline-card intersect:animate-fadeUp opacity-0" style={`animation-delay: ${i * 100}ms`}>
-            <div class="timeline-year">{event.year}</div>
-            <p class="text-olive-light text-sm leading-relaxed">{event.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <!-- ═══════════ MEMBERS ═══════════ -->
   <section class="section-sm relative" id="members">
     <div class="polka-bg"></div>
@@ -184,9 +153,9 @@ const avatarColors = ['#6B5B33', '#7A9B6A', '#8B7B53', '#5C7A4E', '#C4A854'];
   <section class="section relative overflow-hidden bg-olive-dark rounded-lg mx-4 lg:mx-8 mb-4" id="contact">
     <div class="container intersect:animate-fadeUp opacity-0" style="text-align: center;">
       <p class="section-label !text-sage-light">~ come say hello ~</p>
-      <h2 class="h3 !text-cream max-w-xl mx-auto mb-2">Interested in co-op living?</h2>
+      <h2 class="h3 !text-cream max-w-xl mx-auto mb-2">Interested in a co-op project?</h2>
       <p class="text-olive-muted max-w-lg mx-auto mb-6 leading-relaxed">
-        Whether you're curious about cooperative housing, want to learn more about NASCO, or are interested in joining our community, we'd love to hear from you.
+        Whether you're curious about cooperative housing, want to help out, or are interested in joining our community, we'd love to hear from you.
       </p>
       <a href="mailto:dovesnestchicago@gmail.com" class="btn-dove btn-sage">Get in Touch</a>
       <br/>
