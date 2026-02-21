@@ -19,34 +19,57 @@ const about = {
     "We’re a small group of co-op enthusiasts, committed to re-starting a tradition of cooperative living that dates back to the 1990s. We share a huge project that we hope endures behond us — and we're looking for new members to join us.",
   ],
   projectValues: [
-    { icon: "🌿", title: "Co-op Basics", desc: "Doveland runs on a rotating cook cycle and shared labor system, with every member contributing to the life of the house. This isn’t a place you simply live in — it’s one you actively shape and sustain together." },
-    { icon: "🏠", title: "System Building", desc: "We’re creating the foundations that make communal living work: onboarding, chore rotations, and food systems. New members step into a house with structure while still having meaningful input in how it evolves." },
-    { icon: "🔨", title: "DIY Spirit", desc: "The house is an ongoing renovation project — we’ve made progress, but significant work remains. Saturdays are spent working alongside housemates." },
+    {
+      icon: "🌿",
+      title: "Co-op Basics",
+      desc: "Doveland runs on a rotating cook cycle and shared labor system, with every member contributing to the life of the house. This isn’t a place you simply live in — it’s one you actively shape and sustain together.",
+    },
+    {
+      icon: "🏠",
+      title: "System Building",
+      desc: "We’re creating the foundations that make communal living work: onboarding, chore rotations, and food systems. New members step into a house with structure while still having meaningful input in how it evolves.",
+    },
+    {
+      icon: "🔨",
+      title: "DIY Spirit",
+      desc: "The house is an ongoing renovation project — we’ve made progress, but significant work remains. Saturdays are spent working alongside housemates.",
+    },
   ],
 };
 
-const avatarColors = ['#6B5B33', '#7A9B6A', '#8B7B53', '#5C7A4E', '#C4A854'];
+const house = {
+  title: "The House",
+  paragraph:
+    "The house was built in the 1890s and is quite beautiful, with high ceilings and wonderful character — but it was neglected for some years and needs fixing up.",
+};
+
+const avatarColors = ["#6B5B33", "#7A9B6A", "#8B7B53", "#5C7A4E", "#C4A854"];
 ---
 
 <BaseLayout>
-
   <!-- ═══════════ HERO ═══════════ -->
   <section class="section relative overflow-hidden">
     <div class="polka-bg"></div>
     <div class="container">
       <div class="row justify-center">
         <div class="text-center lg:col-8 intersect:animate-fadeUp opacity-0">
-          <span class="inline-flex items-center gap-2 font-handwritten text-lg text-sage-dark bg-sage-muted px-4 py-1 rounded-full mb-6">
+          <span
+            class="inline-flex items-center gap-2 font-handwritten text-lg text-sage-dark bg-sage-muted px-4 py-1 rounded-full mb-6"
+          >
             ✦ a housing cooperative ✦
           </span>
-          <h1 class="font-primary !text-olive-dark mb-4" style="font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1.08; letter-spacing: -1.5px;">
-            The Doves'<br/><span class="italic text-sage">Nest</span>
+          <h1
+            class="font-primary !text-olive-dark mb-4"
+            style="font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1.08; letter-spacing: -1.5px;"
+          >
+            The Doves'<br /><span class="italic text-sage">Nest</span>
           </h1>
-          <p set:html={markdownify(content)} class="mb-8 text-olive-light max-w-lg mx-auto text-lg leading-relaxed" />
+          <p
+            set:html={markdownify(content)}
+            class="mb-8 text-olive-light max-w-lg mx-auto text-lg leading-relaxed"
+          />
           <div class="inline-flex gap-4 flex-wrap justify-center">
-            {button && (
-              <a href={button.link} class="btn-dove btn-primary">{button.label}</a>
-            )}
+            {button && <a href={button.link} class="btn-dove btn-primary">{button.label}</a>}
             <a href="#about" class="btn-dove btn-outline">Our Story</a>
           </div>
         </div>
@@ -62,8 +85,11 @@ const avatarColors = ['#6B5B33', '#7A9B6A', '#8B7B53', '#5C7A4E', '#C4A854'];
         <div class="lg:col-6 intersect:animate-fadeRight opacity-0">
           <p class="section-label">~ who we are ~</p>
           <h2 class="h3 mb-4">A home grown together</h2>
-          {about.paragraphs.map((p) => <p class="mb-4 text-txt-light dark:text-darkmode-txt-light leading-relaxed">{p}</p>)}
+          {about.paragraphs.map((p) => (
+            <p class="mb-4 text-txt-light dark:text-darkmode-txt-light leading-relaxed">{p}</p>
+          ))}
         </div>
+
         <div class="lg:col-6 intersect:animate-fadeLeft opacity-0">
           <div class="window-card">
             <div class="window-card-bar">
@@ -75,9 +101,11 @@ const avatarColors = ['#6B5B33', '#7A9B6A', '#8B7B53', '#5C7A4E', '#C4A854'];
             <div class="window-card-body">
               {about.projectValues.map((v) => (
                 <div class="flex items-start gap-3 mb-4 last:mb-0">
-                  <span class="flex-shrink-0 w-9 h-9 bg-sage rounded-full flex items-center justify-center text-white text-sm">{v.icon}</span>
+                  <span class="flex-shrink-0 w-9 h-9 bg-sage rounded-full flex items-center justify-center text-white text-sm">
+                    {v.icon}
+                  </span>
                   <div>
-                    <strong class="text-olive-dark">{v.title}</strong><br/>
+                    <strong class="text-olive-dark">{v.title}</strong><br />
                     <span class="text-olive-light text-sm">{v.desc}</span>
                   </div>
                 </div>
@@ -89,8 +117,36 @@ const avatarColors = ['#6B5B33', '#7A9B6A', '#8B7B53', '#5C7A4E', '#C4A854'];
     </div>
   </section>
 
+  <!-- ═══════════ THE HOUSE ═══════════ -->
+  <section class="section-sm relative" id="house">
+    <div class="polka-bg"></div>
+    <div class="container">
+      <div class="row justify-center">
+        <div class="lg:col-9 intersect:animate-fadeUp opacity-0">
+          <p class="section-label">~ the house ~</p>
+          <div class="window-card">
+            <div class="window-card-bar">
+              <span class="window-dot dot-red"></span>
+              <span class="window-dot dot-yellow"></span>
+              <span class="window-dot dot-green"></span>
+              <span class="window-title">{house.title.toLowerCase()}</span>
+            </div>
+            <div class="window-card-body">
+              <p class="text-txt-light dark:text-darkmode-txt-light leading-relaxed mb-0">
+                {house.paragraph}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════ CTA ═══════════ -->
-  <section class="section relative overflow-hidden bg-olive-dark rounded-lg mx-4 lg:mx-8 mb-4" id="contact">
+  <section
+    class="section relative overflow-hidden bg-olive-dark rounded-lg mx-4 lg:mx-8 mb-4"
+    id="contact"
+  >
     <div class="container intersect:animate-fadeUp opacity-0" style="text-align: center;">
       <p class="section-label !text-sage-light">~ come say hello ~</p>
       <h2 class="h3 !text-cream max-w-xl mx-auto mb-2">Want to build something together?</h2>
@@ -98,11 +154,13 @@ const avatarColors = ['#6B5B33', '#7A9B6A', '#8B7B53', '#5C7A4E', '#C4A854'];
         Whether you're curious about intentional living, want to help out, or are interested in joining our community, we'd love to hear from you.
       </p>
       <a href="mailto:dovesnestchicago@gmail.com" class="btn-dove btn-sage">Get in Touch</a>
-      <br/>
-      <a href="mailto:dovesnestchicago@gmail.com" class="inline-block font-handwritten text-xl text-sage-light mt-4">
+      <br />
+      <a
+        href="mailto:dovesnestchicago@gmail.com"
+        class="inline-block font-handwritten text-xl text-sage-light mt-4"
+      >
         dovesnestchicago@gmail.com
       </a>
     </div>
   </section>
-
 </BaseLayout>
