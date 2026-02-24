@@ -23,7 +23,7 @@ const expectations = [
 
 const applicationSteps = [
   { title: "Drop Us a Line", desc: "Email us at dovesnestchicago@gmail.com to setup an informal chat in person or via phone." }, 
-  { title: "Fill Out an Application", desc: "Complete our application form to tell us about yourself." },
+  { title: "Fill Out an Application", desc: "Complete <a href='[INSERT LINK HERE]' target='_blank' rel='noopener noreferrer'>our application</a> to tell us about yourself." },
   { title: "Interview at a House Dinner ", desc: "Join us for a meal to meet the current members and see the space." },
   { title: "Member Vote", desc: "Current members vote on new membership." },
   { title: "Move In!", desc: "Sign membership contract and occupancy agreement, pay initial share, and join the flock." },
@@ -124,7 +124,7 @@ const applicationSteps = [
                 <span class="step-num">{i + 1}</span>
                 <div>
                   <h4 class="h6 mb-1">{step.title}</h4>
-                  <p class="text-txt-light dark:text-darkmode-txt-light text-sm leading-relaxed">{step.desc}</p>
+                  <p set:html={step.desc} class="text-txt-light dark:text-darkmode-txt-light text-sm leading-relaxed"></p>
                 </div>
               </div>
             ))}
