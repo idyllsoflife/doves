@@ -1,11 +1,10 @@
 ---
-title: Jane Doe
+title: The Dove's Nest as Literature
 email: janedoe@email.com
 image: "@assets/profile/jane-doe.jpg"
 social:
-  github: "https://github.com/"
-  linkedIn: "https://www.linkedin.com/"
-  email: "janedoe@janedoe.com"
+  website: "dovesnestchicago.com"
+   email: "dovesnestchicago@gmail.com"
 ---
 
-lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr navigation et dolore magna aliqua.
+There's a book by Kathleen Mansfield called The Dove's Nest. 
